@@ -41,6 +41,7 @@ quest.Priority = 50;
 var topic = mod.DialogTopics.AddNew("HW_BuyWhistleTopic");
 var branch = mod.DialogBranches.AddNew("HW_BuyWhistleBranch");
 branch.Quest.SetTo(quest);
+branch.Category = 0;  // Player; vanilla branches always write TNAM
 branch.Flags = DialogBranch.Flag.TopLevel;
 branch.StartingTopic.SetTo(topic);
 
@@ -49,6 +50,7 @@ topic.Quest.SetTo(quest);
 topic.Branch.SetTo(branch);
 topic.Category = DialogTopic.CategoryEnum.Topic;
 topic.Subtype = DialogTopic.SubtypeEnum.Custom;
+topic.SubtypeName = new RecordType("CUST");  // the game reads the subtype from SNAM; left empty it crashes on load
 topic.Priority = 50;
 
 var info = new DialogResponses(mod.GetNextFormKey(), SkyrimRelease.SkyrimSE)
